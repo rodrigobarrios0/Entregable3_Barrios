@@ -1,5 +1,7 @@
-const carrito = [];
+let carrito = [];
 
+
+//Cards
 function mostrarJuegos(productos) {
     const contenedor = document.getElementById("cards-container");
 
@@ -35,6 +37,8 @@ function mostrarJuegos(productos) {
         }
     )};
 
+
+    //JSON
 const rutaProductos = "./assets/items/juegos.JSON";
 
 const obtenerProductos = async () => {
@@ -51,6 +55,7 @@ const obtenerProductos = async () => {
 obtenerProductos();
 
 
+//Carrito
 function agregarAlCarrito(producto) {
     const productoExistente = carrito.find(item => item.id === producto.id);
 
@@ -67,20 +72,52 @@ function mostrarCarrito(){
     const contenedorCarrito = document.getElementById("carrito-container");
     contenedorCarrito.innerHTML = "";
     
-    carrito.forEach(item => {
-        contenedorCarrito.innerHTML += `
+    carrito.forEach((item, index) => {
+        const div = document.createElement("div");
+        div.innerHTML += `
         <p>${item.nombre} x${item.cantidad}</p>
         `;
+
+    //Btn restar
+    const btnRestar = document.createElement("button");
+        btnRestar.innerText = "-";
+
+    btnRestar.addEventListener("click", () => {
+            if (item.cantidad > 1) {
+                item.cantidad--;
+            } else {
+                carrito.splice(index, 1);
+            }
+            guardarCarrito();
+            mostrarCarrito();
+        });
+
+    //Btn eliminar
+    const btnEliminar = document.createElement("button");
+        btnEliminar.innerText = "Eliminar";
+
+    btnEliminar.addEventListener("click", () => {
+            carrito.splice(index, 1);
+            guardarCarrito();
+            mostrarCarrito();
+        });
+
+        div.appendChild(btnRestar);
+        div.appendChild(btnEliminar);
+
+        contenedorCarrito.appendChild(div);
     });
-
+    
     const totalCompra = calcularTotal();
-
+    
     const divResumen = document.createElement('div');
     divResumen.innerHTML = `
-        <h3>Total: $${totalCompra}</h3>
-        <button id="vaciarCarritoBtn">Vaciar Carrito</button>
-        <button id="compra">Comprar</button>
+    <h3>Total: $${totalCompra}</h3>
+    <button id="vaciarCarritoBtn">Vaciar Carrito</button>
+    <button id="compra">Comprar</button>
     `;
+
+    contenedorCarrito.appendChild(divResumen);
     
     const botonComprar = divResumen.querySelector(`#compra`);
     botonComprar.addEventListener('click', () => {
@@ -94,7 +131,7 @@ function mostrarCarrito(){
         });
         vaciarCarrito();
     });
-
+    
     const botonVaciar = divResumen.querySelector('#vaciarCarritoBtn');
     botonVaciar.addEventListener('click', () => {
         Swal.fire({
@@ -119,7 +156,6 @@ function mostrarCarrito(){
             }
         });
     });
-    contenedorCarrito.appendChild(divResumen);
 };
 
 function guardarCarrito(){ 
@@ -142,16 +178,6 @@ function vaciarCarrito() {
     mostrarCarrito();
 };
 
-/* functiom calcularTotal(){
-    return carrito.reduce((total, item) => {
-        const precioLimpio = parseFloat(item.precio.replace("$"," "));
-        const subtotal = precioLimpio * item.cantidad;
-        
-        return total + subtotal;
-        }, 0);
-}; */
-
 function calcularTotal(){
     return carrito.reduce((total, item) => total + (parseFloat(item.precio.replace("$"," ")) * item.cantidad), 0);
-}
-
+};
