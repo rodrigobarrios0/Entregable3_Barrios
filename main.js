@@ -45,7 +45,6 @@ const obtenerProductos = async () => {
     try {
         const resp = await fetch(rutaProductos);
         const data = await resp.json();
-
         mostrarJuegos(data);
     } catch (error) {
         console.error("Error al cargar productos:", error);

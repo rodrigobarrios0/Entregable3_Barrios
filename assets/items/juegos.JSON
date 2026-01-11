@@ -5,7 +5,7 @@
         "plataforma": "Nintendo Switch",
         "imagen": "./assets/imagenes/zeldabotw.jpg",
         "precio": "$19.99",
-        "id": "1"
+        "id": 1
     },
     {
         "nombre": "God of War",
@@ -13,7 +13,7 @@
         "plataforma": "PlayStation 4",
         "imagen": "./assets/imagenes/gowps4.jpeg",
         "precio": "$24.99",
-        "id": "2"
+        "id": 2
     },
     {
         "nombre": "Halo Infinite",
@@ -21,7 +21,7 @@
         "plataforma": "Xbox Series X",
         "imagen": "./assets/imagenes/Haloinfinitex.jpg",
         "precio": "$9.99",
-        "id": "3"
+        "id": 3
     },
     {
         "nombre": "Minecraft",
@@ -29,7 +29,7 @@
         "plataforma": "Multiplataforma",
         "imagen": "./assets/imagenes/minecraft.jpg",
         "precio": "$9.99",
-        "id": "4"
+        "id": 4
     },
     {
         "nombre": "Cyberpunk 2077",
@@ -37,6 +37,6 @@
         "plataforma": "Multiplataforma",
         "imagen": "./assets/imagenes/cyberpunk_2077_PL.jpg",
         "precio": "$59.99",
-        "id": "5"
+        "id": 5
     }
 ]
