@@ -39,7 +39,7 @@ function mostrarJuegos(productos) {
 
 
     //JSON
-const rutaProductos = "./assets/items/juegos.JSON";
+const rutaProductos = "./assets/items/juegos.json";
 
 const obtenerProductos = async () => {
     try {
